@@ -1,0 +1,113 @@
+Em Java, você pode simplesmente criar um arquivo separado com um main() e rodar diretamente. Em C#, as coisas são um pouco diferentes porque o programa precisa de um ponto de entrada único. Mas existem algumas formas mais simples de testar código sem precisar criar objetos manualmente.
+
+--------------------------------------------------------------------------------------------------------------------
+
+Se você só quer testar código sem criar classes separadas, pode simplesmente colocar funções estáticas dentro de Program.cs:
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        ExibirMensagem(); // Chamando a função diretamente
+    }
+
+    static void ExibirMensagem()
+    {
+        Console.WriteLine("Olá, isso é um teste!");
+    }
+}
+💡 Vantagem: Não precisa criar outra classe, já roda direto.
+
+----------------------------------------------------------------------------------------------------
+
+✅ 2️⃣ Usar um Script .csx (Estilo Java)
+Se quiser testar C# sem criar um projeto, igual em Java, use arquivos de script .csx. Assim, não precisa definir Main() ou classes:
+
+string nome = "Naruto";
+int idade = 17;
+
+Console.WriteLine($"Nome: {nome}, Idade: {idade}");
+Para rodar:
+
+Roda: dotnet script meuarquivo.csx
+💡 Vantagem: Funciona igual ao Java, sem precisar criar uma classe.
+
+------------------------------------------------------------------------------
+
+✅ 3️⃣ Criar um Arquivo Simples e Rodar com top-level statements (C# 9+)
+Desde o C# 9, você pode escrever código direto sem precisar de Main(). Isso é útil para estudos, igual ao Java:
+
+
+Console.WriteLine("Hello World!");
+
+int Soma(int a, int b)
+{
+    return a + b;
+}
+
+Console.WriteLine(Soma(5, 3));
+
+📌 Para rodar no terminal:
+Roda: dotnet run
+
+💡 Vantagem: Código mais limpo e rápido para testar.
+
+---------------------------------------------------------------------------------------------------
+
+Chame o método no final do arquivo
+No caso dos scripts .csx, você pode chamar diretamente a função no final do arquivo, assim:
+
+using System;
+
+class Variaveis
+{
+    public static void VariaveisNaruto()
+    {
+        // Variáveis
+        string ninja = "Naruto";
+        string vila = "Konoha";
+        string sensei = "Kakashi";
+        int idade = 17;
+        bool hokage = false;
+        char rank = 'S';
+
+        Console.WriteLine("Ninja : " + ninja);
+        Console.WriteLine("Vila  : " + vila);
+        Console.WriteLine("Sensei: " + sensei);
+        Console.WriteLine("Rank  : " + rank);
+        Console.WriteLine("Idade : " + idade);
+        Console.WriteLine("Hokage: " + hokage);
+    }
+}
+
+// 🔥 Agora chamamos o método
+Variaveis.VariaveisNaruto();
+
+Agora, ao rodar dotnet script Variaveis.csx, ele realmente executará a função e imprimirá no console. 🚀
+
+-----------------------------------------------------------------------------------
+
+dotnet script Variaveis.csx
+
+dotnet = referencia da linguagem 
+script = chamando um script 
+Variaveis.csx = qual diretorio quer rodar 
+
+Obs: Não precisa ficar buildando 
+
+-----------------------------------------------------------------
+Ou podemos usar como funcoes, importando para o program.cs (Que é o Principal File)
+
+// Program.cs
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        //Variaveis.VariaveisNaruto(); // Chama o método do outro arquivo
+        //Funcoes.FuncoesNaruto(); // Chama o método do outro arquivo
+    }
+}
