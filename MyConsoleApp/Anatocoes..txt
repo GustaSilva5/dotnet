@@ -1,8 +1,5 @@
-Em Java, você pode simplesmente criar um arquivo separado com um main() e rodar diretamente. Em C#, as coisas são um pouco diferentes porque o programa precisa de um ponto de entrada único. Mas existem algumas formas mais simples de testar código sem precisar criar objetos manualmente.
-
---------------------------------------------------------------------------------------------------------------------
-
-Se você só quer testar código sem criar classes separadas, pode simplesmente colocar funções estáticas dentro de Program.cs:
+1️⃣ Usando Funções Estáticas dentro de Program.cs
+Se você só quer testar um código sem criar classes separadas, você pode simplesmente colocar funções estáticas dentro do arquivo Program.cs. Aqui está um exemplo simples:
 
 using System;
 
@@ -18,27 +15,28 @@ class Program
         Console.WriteLine("Olá, isso é um teste!");
     }
 }
-💡 Vantagem: Não precisa criar outra classe, já roda direto.
+💡 Vantagem:
+Você não precisa criar outra classe. O código já roda diretamente no arquivo principal.
 
-----------------------------------------------------------------------------------------------------
+2️⃣ Usando Scripts .csx (Estilo Java)
+Se você deseja testar C# sem criar um projeto completo, igual ao que acontece em Java, use arquivos de script com a extensão .csx. Isso permite que você escreva código diretamente sem a necessidade de definir a função Main() ou classes.
 
-✅ 2️⃣ Usar um Script .csx (Estilo Java)
-Se quiser testar C# sem criar um projeto, igual em Java, use arquivos de script .csx. Assim, não precisa definir Main() ou classes:
+Exemplo de código:
 
 string nome = "Naruto";
 int idade = 17;
 
 Console.WriteLine($"Nome: {nome}, Idade: {idade}");
-Para rodar:
+Para rodar o script, você pode usar o seguinte comando no terminal:
 
-Roda: dotnet script meuarquivo.csx
-💡 Vantagem: Funciona igual ao Java, sem precisar criar uma classe.
+dotnet script meuarquivo.csx
+💡 Vantagem:
+Funciona como o Java, sem precisar criar classes ou a função Main().
 
-------------------------------------------------------------------------------
+3️⃣ Usando Top-Level Statements (C# 9+)
+Desde o C# 9, você pode escrever código diretamente no arquivo sem precisar da função Main(). Isso facilita o processo de testes rápidos e é útil para estudos, assim como em Java.
 
-✅ 3️⃣ Criar um Arquivo Simples e Rodar com top-level statements (C# 9+)
-Desde o C# 9, você pode escrever código direto sem precisar de Main(). Isso é útil para estudos, igual ao Java:
-
+Exemplo de código:
 
 Console.WriteLine("Hello World!");
 
@@ -48,16 +46,12 @@ int Soma(int a, int b)
 }
 
 Console.WriteLine(Soma(5, 3));
+📌 Para rodar no terminal: dotnet run
+💡 Vantagem:
+Código mais limpo e rápido para testar, sem a necessidade de definir uma função Main().
 
-📌 Para rodar no terminal:
-Roda: dotnet run
-
-💡 Vantagem: Código mais limpo e rápido para testar.
-
----------------------------------------------------------------------------------------------------
-
-Chame o método no final do arquivo
-No caso dos scripts .csx, você pode chamar diretamente a função no final do arquivo, assim:
+4️⃣ Chamar Funções Diretamente no Final do Arquivo
+No caso dos scripts .csx, você pode chamar diretamente funções no final do arquivo. Aqui está um exemplo para ilustrar isso:
 
 using System;
 
@@ -82,32 +76,34 @@ class Variaveis
     }
 }
 
-// 🔥 Agora chamamos o método
+// 🔥 Chamando o método no final do arquivo
 Variaveis.VariaveisNaruto();
+Agora, ao rodar o comando dotnet script Variaveis.csx, ele executará a função VariaveisNaruto() e imprimirá os resultados no console. 🚀
 
-Agora, ao rodar dotnet script Variaveis.csx, ele realmente executará a função e imprimirá no console. 🚀
-
------------------------------------------------------------------------------------
+5️⃣ Comando para Executar Scripts
+Se você deseja rodar o script .csx, use o comando abaixo no terminal:
 
 dotnet script Variaveis.csx
+Aqui está o que cada parte faz:
 
-dotnet = referencia da linguagem 
-script = chamando um script 
-Variaveis.csx = qual diretorio quer rodar 
+dotnet: Referência à linguagem C#.
+script: Comando para rodar scripts.
+Variaveis.csx: O nome do arquivo de script que você quer rodar.
+Obs: Não precisa ficar buildando o projeto toda vez!
 
-Obs: Não precisa ficar buildando 
+6️⃣ Importando Funções de Outros Arquivos (Para Organização)
+Outra abordagem é criar funções em arquivos separados e importá-las para o Program.cs. Aqui está um exemplo de como fazer isso:
 
------------------------------------------------------------------
-Ou podemos usar como funcoes, importando para o program.cs (Que é o Principal File)
+Program.cs:
 
-// Program.cs
 using System;
 
 class Program
 {
     static void Main()
     {
-        //Variaveis.VariaveisNaruto(); // Chama o método do outro arquivo
-        //Funcoes.FuncoesNaruto(); // Chama o método do outro arquivo
+        // Chama o método de outro arquivo
+        Variaveis.VariaveisNaruto(); // Chama o método do arquivo Variaveis.cs
     }
 }
+Neste exemplo, você está chamando a função VariaveisNaruto() de um arquivo separado chamado Variaveis.cs. Isso permite que você mantenha o código mais organizado.
